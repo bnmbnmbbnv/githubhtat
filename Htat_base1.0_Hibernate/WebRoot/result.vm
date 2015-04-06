@@ -1,0 +1,12 @@
+<html>
+<head>
+</head>
+
+<body>#set($ses=$request.getSession()) 
+<p>
+	<b>
+		${ses.getAttribute('greeting')}!
+	</b>
+</p>
+</body>
+</html>

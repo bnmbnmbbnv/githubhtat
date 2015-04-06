@@ -1,0 +1,62 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+<script type="text/javascript">
+ function collect(index){
+  var povalue=document.getElementById("s1").options[index].value;
+  var xhr=new XMLHttpRequest();
+   url="/from/city?enname="+povalue;
+   xhr.open("get",url,true);
+   xhr.onreadystatechange=function(){
+    if(xhr.readyState==4){
+     var json=xhr.responseText;
+     var sObj=document.getElementById("s2");
+     if(json=="0"){
+      sObj.options.length=1;
+     }else{
+      var optionObj=eval("("+json+")");
+      sObj.options.length=1;
+      fill(optionObj,sObj);
+     }
+    }
+   }
+   xhr.send(null);
+ }
+ function fill(items,sobj){
+  for(var i=0;i<items.length;i++){
+   var opObj=new Option(items[i]);
+   sobj.appendChild(opObj);
+  }
+ }
+</script>
+</head>
+<body>
+ 请选择地区：
+ <form action="">
+  <select id="s1" onchange="collect(this.selectedIndex);">
+   <option>--请选择--</option>
+  </select>
+  <script type="text/javascript">
+   var req=new XMLHttpRequest();
+   url="/from/city";
+   req.open("get",url,true);
+   req.onreadystatechange=function(){
+    if(req.readyState==4){
+     var json=req.responseText;
+     var sobj=document.getElementById("s1");
+     var potions=eval("("+json+")");
+     for(var i=0;i<potions.length;i++){
+      var opObj=new Option(potions[i].name,potions[i].enname);
+      sobj.appendChild(opObj);
+     } 
+    }
+   }
+   req.send(null);
+  </script>
+  省  
+  <select  id="s2">
+   <option>--请选择--</option>
+  </select>市
+ </form>
+</body>
+</html>

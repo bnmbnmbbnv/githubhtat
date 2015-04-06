@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+	"http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="authority" extends="struts-default">
+	
+		<!-- 定义一个拦截器 -->
+		<interceptors>
+			<interceptor name="LoginInterceptor"
+				class="com.htat.interceptor.LoginInterceptor">
+			</interceptor>
+			<!-- 拦截器栈 -->
+			<interceptor-stack name="userlogininterceptor">
+				<interceptor-ref name="defaultStack" />
+				<interceptor-ref name="LoginInterceptor" />
+			</interceptor-stack>
+		</interceptors>
+
+		<!-- 定义全局Result -->
+		<global-results>
+			<!-- 当返回login视图名时，转入/login.jsp页面 -->
+			<result name="login">/jsp/login.jsp</result>
+		</global-results>
+
+		<action name="loginform"
+			class="com.htat.action.LoginFormAction">
+			<result name="success">/jsp/login.jsp</result>
+		</action>
+		
+		<action name="login" class="com.htat.action.LoginAction">
+			<result name="success">/jsp/index.jsp</result>
+			<result name="error">/jsp/login.jsp</result>
+			<result name="input">/jsp/login.jsp</result>
+		</action>
+		
+		<action name="register" class="com.htat.action.RegisterAction">
+			<result name="success">/jsp/login.jsp</result>
+			<result name="error">/jsp/error.jsp</result>
+		</action>
+		
+		<action name="show" class="com.htat.action.ShowAction">
+			<result name="success">/jsp/index.jsp</result>
+			<!-- 使用此拦截器 --><!--
+			<interceptor-ref name="mydefault" />
+		--></action>
+		
+	</package>
+</struts>

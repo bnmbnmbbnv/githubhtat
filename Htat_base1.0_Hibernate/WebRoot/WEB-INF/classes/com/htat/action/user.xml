@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<constant name="struts.devMode" value="false" />
+
+	<constant name="struts.configuration.xml.reload" value="true"/>
+	
+	<package name="user" extends="struts-default">
+	
+	<!-- 拦截器 -->
+	<interceptors>
+			<interceptor name="UserUpdateInterceptor"
+				class="com.htat.interceptor.UserUpdateInterceptor">
+			</interceptor>
+			<interceptor name="UserAddInterceptor"
+				class="com.htat.interceptor.UserAddInterceptor">
+			</interceptor>
+			<!-- 拦截器栈 -->
+			<interceptor-stack name="userupdateinterceptor">
+				<interceptor-ref name="defaultStack" />
+				<interceptor-ref name="UserUpdateInterceptor"/>
+			</interceptor-stack>
+			<interceptor-stack name="useraddinterceptor">
+				<interceptor-ref name="defaultStack" />
+				<interceptor-ref name="UserAddInterceptor"/>
+			</interceptor-stack>
+	</interceptors>
+		
+	<action name="UserSelectById" class="com.htat.action.UserSelectAction">
+		<result name="Success">/jsp/usercenter.jsp</result>
+	</action>
+	<action name="UserUpdateById" class="com.htat.action.UserUpdateAction">
+		<result name="Success">/jsp/usercenter.jsp</result>
+		<result name="input">/jsp/usercenter.jsp</result>
+		<result name="error">/jsp/usercenter.jsp</result>
+		<interceptor-ref name="userupdateinterceptor"/>
+	</action>	
+	<action name="UserMoreAction" class="com.htat.action.UserMoreAction">
+		<result name="adminsuccess">/jsp/adminmore.jsp</result>
+		<result name="teachersuccess">/jsp/teachermore.jsp</result>
+		<result name="studentsuccess">/jsp/studentmore.jsp</result>
+		<result name="error">/jsp/error.jsp</result>
+		<!--<interceptor-ref name="moreinterceptor"/>
+	--></action>	
+	<action name="UserAddAction" class="com.htat.action.UserAddAction">
+		<interceptor-ref name="useraddinterceptor"/>
+		<result name="success">/jsp/adminmore.jsp</result>
+		<result name="error">/jsp/error.jsp</result>
+	</action>
+	<action name="UserHelpAction" class="com.htat.action.UserHelpAction">
+			<result name="helpteachersuccess">/jsp/helpteacher.jsp</result>
+		<result name="helpstudentsuccess">/jsp/helpstudent.jsp</result>
+	</action>
+	</package>
+</struts>

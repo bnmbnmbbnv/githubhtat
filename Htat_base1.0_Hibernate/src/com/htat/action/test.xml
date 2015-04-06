@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<constant name="struts.devMode" value="false" />
+	<package name="testtwo" extends="struts-default">
+	
+	<action name="prime_*" class="com.htat.action.primeAction" method="{1}">
+		<result name="success">/error.jsp</result>
+		<result name="input">/Prime.jsp</result>
+	</action>
+	<action name="primevalidate" class="com.htat.action.primeActionvalidate">
+		<result name="success">/error.jsp</result>
+		<result name="input">/Prime.jsp</result>
+	</action>
+	</package>
+</struts>

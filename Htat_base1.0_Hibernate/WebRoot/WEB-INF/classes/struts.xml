@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+		<constant name="struts.devMode" value="false" />
+	<constant name="struts.configuration.xml.reload" value="true"/>
+	
+	<include file="com/htat/action/test.xml"/>
+	<include file="com/htat/action/login.xml"/>
+	<include file="com/htat/action/exercise.xml"/>
+	<include file="com/htat/action/user.xml"/>
+	<include file="com/htat/action/show/exerciseshow.xml"/>
+	<include file="com/htat/action/usermemory.xml"/>
+	
+	<package name="test" extends="struts-default">
+	<interceptors>
+	<interceptor name="greeting" class="com.htat.action.GreetingInterceptor"></interceptor>
+	</interceptors>
+	<default-interceptor-ref name="completeStack"></default-interceptor-ref>
+	<action name="helloworld" class="com.htat.action.HelloWorldAction">
+		<result name="success" type="redirectAction" >greeting</result>
+		<result name="input">/Login.jsp</result>
+	</action>
+	<action name="greeting" class="com.htat.action.GreetingAction">
+		<result name="success">/indext.jsp</result>
+		<interceptor-ref name="greeting"></interceptor-ref>
+	</action>
+		<action name="OpenexeAction" class="com.htat.action.OpenexeAction">
+		<result name="success">/jsp/exercisebyid.jsp</result>
+		<result name="error">/jsp/error.jsp</result>
+	</action>
+	
+	<action name="getpath" class="com.htat.action.GetPathAction">
+		<result name="success">/jsptest/OK.jsp</result>
+		<result name="error">/jsp/error.jsp</result>
+	</action>
+	
+	<action name="uploadfile" class="com.htat.action.UploadfileAction">
+		<result name="Success" type="redirect">ExcelAddAction?path=${Passpath}</result>
+		<result name="error">/jsp/error.jsp</result>
+	</action>
+	
+	<action name="ExcelAddAction" class="com.htat.action.ExcelAddAction">
+		<result name="success">/jsptest/OK.jsp</result>
+		<result name="error">/jsp/error.jsp</result>
+	</action>
+	
+    </package> 
+	
+</struts>

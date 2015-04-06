@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<constant name="struts.devMode" value="false" />
+	
+	<constant name="struts.configuration.xml.reload" value="true" />
+
+	<package name="Exercise" extends="struts-default">
+	<interceptors>
+			<interceptor name="ExerciseAddInterceptor"
+				class="com.htat.interceptor.ExerciseAddInterceptor">
+			</interceptor>
+			<!-- 拦截器栈 -->
+			<interceptor-stack name="exerciseaddinterceptor">
+				<interceptor-ref name="defaultStack" />
+				<interceptor-ref name="ExerciseAddInterceptor"/>
+			</interceptor-stack>
+	</interceptors>
+			
+		<action name="ExerciseSelect" class="com.htat.action.ExerciseSelectAction">
+			<result name="Success">/jsp/exercisebyid.jsp</result>
+		</action>
+		
+		<action name="ExerciseAddAction" class="com.htat.action.ExerciseAddAction">
+			<result name="Success">/jsp/adminmore.jsp</result>
+			<result name="error">/jsp/error.jsp</result>
+			<interceptor-ref name="exerciseaddinterceptor"></interceptor-ref>
+		</action>
+		<action name="ExercisesetAddAction" class="com.htat.action.ExercisesetAddAction">
+			<result name="Success">/jsp/adminmore.jsp</result>
+			<result name="error">/jsp/error.jsp</result>
+		</action>
+		<action name="ExerciseDeleteAction" class="com.htat.action.ExerciseDeleteAction">
+			<result name="success" type="redirect">ExerciseShowAction</result>
+			<result name="error">/jsp/error.jsp</result>
+		</action>
+		<action name="ExerciseUpdateAction" class="com.htat.action.ExerciseUpdateAction">
+			<result name="Success" type="redirect">ExerciseSelect?eId=${passeId}</result>
+			<result name="error">/jsp/error.jsp</result>
+		</action>
+		<action name="ExerciseUpdatesituationAction" class="com.htat.action.ExerciseUpdatesituationAction">
+			<result name="Success" type="redirect">ExerciseShowAction</result>
+			<result name="error">/jsp/error.jsp</result>
+		</action>
+	</package>
+</struts>

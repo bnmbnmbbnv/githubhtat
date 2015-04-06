@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-module
+  type="WEB"
+  name="Htat_base1.0_Hibernate"
+  id="myeclipse.1423123653877"
+  context-root="/Htat_base1.0_Hibernate"
+  j2ee-spec="5.0"
+  archive="Htat_base1.0_Hibernate.war">
+  <attributes>
+    <attribute name="webrootdir" value="WebRoot" />
+  </attributes>
+</project-module>
+

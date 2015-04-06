@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<constant name="struts.devMode" value="false" />
+
+	<constant name="struts.configuration.xml.reload" value="true"/>
+	
+	<package name="usermemory" extends="struts-default">
+	
+	<action name="UsermemoryAdd" class="com.htat.action.UsermemoryAddAction">
+		<result name="success">/jsp/exercise.jsp</result>
+		<result name="error">/jsp/error.jsp</result>
+	</action>
+	<action name="UsermemorySelect" class="com.htat.action.UsermemorySelectAction">
+		<result name="success">/jsp/usercenter.jsp</result>
+		<result name="error">/jsp/error.jsp</result>
+	</action>
+	</package>
+</struts>

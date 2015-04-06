@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping 
+	package="com.htat.pojo">
+
+	<class name="Exercise" table="exercisetable">
+		<id name="id">
+			<generator class="native"/>
+		</id>
+		
+			<property name="topic"/>
+			<property name="content"/>
+			<property name="type"/>
+			<property name="level"/>
+			<property name="keytext"/>
+			<property name="answer"/>
+			<property name="exerciseset"/>
+			<property name="situation"/>
+	</class>
+	<!--<class name="Exercise" table="exercisesettable">
+		<id name="id">
+			<generator class="native"/>
+		</id>
+			<property name="exerciseset"/>
+	</class>
+	
+--></hibernate-mapping>
